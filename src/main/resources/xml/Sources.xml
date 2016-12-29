@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SourcesList>
+    <Source>
+        <Type>URI</Type>
+        <BaseUnit>PLN</BaseUnit>
+        <Name>National Bank of Poland (NBP)</Name>
+        <Address>http://api.nbp.pl/api/exchangerates/tables/A/YYYY-MM-DD/?format=xml</Address>
+    </Source>
+    <Source>
+        <Type>URL</Type>
+        <BaseUnit>EUR</BaseUnit>
+        <Name>European Central Bank (ECB)</Name>
+        <Address>https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml</Address>
+    </Source>
+</SourcesList>
