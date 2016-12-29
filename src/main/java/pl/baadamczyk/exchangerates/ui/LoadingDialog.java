@@ -44,7 +44,7 @@ public class LoadingDialog extends Window {
         gridBagConstraints.insets = new java.awt.Insets(14, 0, 12, 0);
         jPanel1.add(CancelButton, gridBagConstraints);
 
-        LoadingIconImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphics/loadingicon.gif"))); // NOI18N
+        LoadingIconImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loadingicon.gif"))); // NOI18N
         LoadingIconImage.setToolTipText("");
         LoadingIconImage.setMaximumSize(new java.awt.Dimension(50, 50));
         LoadingIconImage.setMinimumSize(new java.awt.Dimension(50, 50));
