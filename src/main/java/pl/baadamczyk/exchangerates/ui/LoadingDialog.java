@@ -1,5 +1,7 @@
 package pl.baadamczyk.exchangerates.ui;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author baadamczyk
@@ -7,9 +9,8 @@ package pl.baadamczyk.exchangerates.ui;
 public class LoadingDialog extends Window {
 
     public LoadingDialog() {
-        super(500, 150, "Loading data ...");
-        
-        initComponents();
+        super(500, 150, "Loading data ...");        
+        initComponents();       
     }
     
     @SuppressWarnings("unchecked")
@@ -27,6 +28,11 @@ public class LoadingDialog extends Window {
         setMaximumSize(new java.awt.Dimension(800, 150));
         setMinimumSize(getPreferredSize());
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                onWindowOpened(evt);
+            }
+        });
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
@@ -44,11 +50,8 @@ public class LoadingDialog extends Window {
         gridBagConstraints.insets = new java.awt.Insets(14, 0, 12, 0);
         jPanel1.add(CancelButton, gridBagConstraints);
 
-        LoadingIconImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loadingicon.gif"))); // NOI18N
+        LoadingIconImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphics/loadingicon.gif"))); // NOI18N
         LoadingIconImage.setToolTipText("");
-        LoadingIconImage.setMaximumSize(new java.awt.Dimension(50, 50));
-        LoadingIconImage.setMinimumSize(new java.awt.Dimension(50, 50));
-        LoadingIconImage.setPreferredSize(new java.awt.Dimension(50, 50));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -75,10 +78,27 @@ public class LoadingDialog extends Window {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void onWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_onWindowOpened
+        try {
+            getRawData();
+        } catch (Exception e) {
+            handleLoadingException();
+        }
+    }//GEN-LAST:event_onWindowOpened
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ActionDescriptionLabel;
     private javax.swing.JButton CancelButton;
     private javax.swing.JLabel LoadingIconImage;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    private void getRawData() {
+    }
+
+    private void handleLoadingException() {
+        JOptionPane.showMessageDialog(this, "A loading error has occured. "
+                    + "Application will be closed. Please try again later ...", "Loading error", JOptionPane.ERROR_MESSAGE);
+        System.exit(1);
+    }
 }
