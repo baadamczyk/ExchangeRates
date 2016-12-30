@@ -4,6 +4,6 @@ package pl.baadamczyk.exchangerates.dataprocessing;
  *
  * @author baadamczyk
  */
-public class XMLHandler {
+public abstract class XMLHandler {
     
 }
