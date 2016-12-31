@@ -1,5 +1,8 @@
 package pl.baadamczyk.exchangerates;
 
+import java.util.ArrayList;
+import pl.baadamczyk.exchangerates.dataprocessing.xmlentities.DataSource;
+import pl.baadamczyk.exchangerates.dataprocessing.SourcesManager;
 import pl.baadamczyk.exchangerates.ui.LoadingDialog;
 
 /*
@@ -8,7 +11,10 @@ import pl.baadamczyk.exchangerates.ui.LoadingDialog;
 public class MainClass {
     
     public static void main(String[] args) {
-        displayLoadingScreen();
+//        displayLoadingScreen();
+          SourcesManager sourceHandler = new SourcesManager();
+          ArrayList<DataSource>  slist = sourceHandler.getSourceList();
+          System.out.println("DONE");
     }
 
     private static void displayLoadingScreen() {

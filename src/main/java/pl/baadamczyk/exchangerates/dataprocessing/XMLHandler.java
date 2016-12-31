@@ -16,6 +16,7 @@ import org.xml.sax.SAXException;
  * @author baadamczyk
  */
 public abstract class XMLHandler implements ContentAquirer {
+   
     public NodeList createNodeList(File parsedFile, String rootTagName) throws ParserConfigurationException, SAXException, IOException {
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = builderFactory.newDocumentBuilder();            

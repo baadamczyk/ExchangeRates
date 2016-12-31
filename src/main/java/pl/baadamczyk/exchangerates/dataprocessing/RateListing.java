@@ -1,5 +1,6 @@
 package pl.baadamczyk.exchangerates.dataprocessing;
 
+import pl.baadamczyk.exchangerates.dataprocessing.xmlentities.ExchangeRate;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
