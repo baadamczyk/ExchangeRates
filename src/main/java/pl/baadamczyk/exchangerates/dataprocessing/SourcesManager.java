@@ -31,19 +31,18 @@ public class SourcesManager extends XMLHandler {
         } catch (IOException | ParserConfigurationException | SAXException ex) {            
         }
     }
-
     
-
-    private void aquireContent(NodeList SourceNodesList) {
+    @Override
+    public void aquireContent(NodeList SourceNodesList) {
         
-    for(int i=0; i< SourceNodesList.getLength(); i++) {
-                Node ElementNode = SourceNodesList.item(i);
-                
-                if(ElementNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element SourceElement = (Element) ElementNode;                    
-                    createSourcesList(SourceElement);                                                            
-                }                                
-            }
+        for(int i=0; i< SourceNodesList.getLength(); i++) {
+            Node ElementNode = SourceNodesList.item(i);
+
+            if(ElementNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element SourceElement = (Element) ElementNode;                    
+                createSourcesList(SourceElement);                                                            
+            }                                
+        }   
     }
 
     private void createSourcesList(Element SourceElement) {
