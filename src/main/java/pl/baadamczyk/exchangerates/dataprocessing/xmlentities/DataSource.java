@@ -1,4 +1,4 @@
-package pl.baadamczyk.exchangerates.dataprocessing;
+package pl.baadamczyk.exchangerates.dataprocessing.xmlentities;
 
 /**
  *
@@ -9,6 +9,7 @@ public class DataSource {
     private String BaseUnit;
     private String Name;
     private String Address;
+    private boolean IsAvailable;
 
     public DataSource(String Type, String BaseUnit, String Name, String Address) {
         this.Type = Type;
@@ -47,5 +48,13 @@ public class DataSource {
 
     public void setAddress(String Address) {
         this.Address = Address;
+    }
+
+    public boolean isIsAvailable() {
+        return IsAvailable;
+    }
+
+    public void setIsAvailable(boolean IsAvailable) {
+        this.IsAvailable = IsAvailable;
     }
 }

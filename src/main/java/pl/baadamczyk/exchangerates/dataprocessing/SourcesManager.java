@@ -1,7 +1,11 @@
 package pl.baadamczyk.exchangerates.dataprocessing;
 
+import pl.baadamczyk.exchangerates.dataprocessing.xmlentities.DataSource;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Element;
@@ -51,5 +55,28 @@ public class SourcesManager extends XMLHandler {
         String SourceName = SourceElement.getElementsByTagName("Name").item(0).getTextContent();
         String SourceAddress = SourceElement.getElementsByTagName("Address").item(0).getTextContent();
         SourceList.add(new DataSource(SourceType, SourceBaseUnit, SourceName, SourceAddress));
+        checkSourcesAvailability();
+    }
+    
+    private void checkSourcesAvailability() {
+       
+            for (DataSource source : SourceList) {
+
+                HttpURLConnection connection = null;
+                try {
+                    
+                    URL url = new URL(source.getAddress());
+                    connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("GET");
+                    connection.setRequestProperty("Accept", "application/xml");
+                    connection.setReadTimeout(5000);
+                    InputStream xml = connection.getInputStream();
+                    if (xml == null) source.setIsAvailable(false);
+                    else source.setIsAvailable(true);
+                    
+                } catch (IOException iOException) {
+                    source.setIsAvailable(false);
+                }                          
+            }        
     }
 }

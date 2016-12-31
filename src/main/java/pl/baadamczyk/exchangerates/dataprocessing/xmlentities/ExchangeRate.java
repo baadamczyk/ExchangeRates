@@ -1,4 +1,4 @@
-package pl.baadamczyk.exchangerates.dataprocessing;
+package pl.baadamczyk.exchangerates.dataprocessing.xmlentities;
 
 /**
  *
