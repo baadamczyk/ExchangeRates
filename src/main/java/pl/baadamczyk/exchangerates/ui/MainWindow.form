@@ -49,7 +49,6 @@
             <MenuItem class="javax.swing.JMenuItem" name="ConverterMenuOption">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Rates converter"/>
-                <Property name="actionCommand" type="java.lang.String" value="Rates converter"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="PayPalPaymentsMenuOption">

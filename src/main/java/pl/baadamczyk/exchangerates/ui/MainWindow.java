@@ -3,14 +3,17 @@
 package pl.baadamczyk.exchangerates.ui;
 
 import java.awt.GridLayout;
+import pl.baadamczyk.exchangerates.dataprocessing.RateListing;
+import pl.baadamczyk.exchangerates.dataprocessing.xmlentities.ExchangeRate;
 
 public class MainWindow extends Window {
     
     private String ActiveCurrencySymbol = "CURR_SYMB";
  
-    public MainWindow() {
+    public MainWindow(RateListing listing) {
         super(600, 500, "ExchangeRates");
         initComponents();
+        inputDataFromListing(listing);
         appendCurrencySymbolToWindowTitle();
         setContainerLayout();        
     }
@@ -161,9 +164,14 @@ public class MainWindow extends Window {
     }
 
     private void setContainerLayout() {
-        RateDisplayContainer.setLayout(new GridLayout(0, 3));                
-        for(int i=0; i<=50; i++) {
-            RateDisplayContainer.add(new EntryTile());
+        RateDisplayContainer.setLayout(new GridLayout(0, 3));                        
+    }
+
+    private void inputDataFromListing(RateListing listing) {
+        ActiveCurrencySymbol = listing.getBaseCurrency();
+        
+        for(ExchangeRate rate : listing) {
+            RateDisplayContainer.add(new EntryTile(rate.getName(), rate.getValue()));
         }
     }
 }
