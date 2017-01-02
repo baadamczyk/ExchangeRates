@@ -1,6 +1,7 @@
 package pl.baadamczyk.exchangerates.ui;
 
-import javax.swing.JOptionPane;
+import pl.baadamczyk.exchangerates.dataprocessing.DataDownloader;
+import pl.baadamczyk.exchangerates.dataprocessing.RateListing;
 
 /**
  *
@@ -9,9 +10,11 @@ import javax.swing.JOptionPane;
 public class LoadingDialog extends Window {
 
     public LoadingDialog() {
-        super(500, 150, "Loading data ...");        
-        initComponents();       
+        super(500, 150, "Loading data ...");         
+        initComponents();                 
+        ActionDescriptionLabel.setText("Exchange rates data are being loaded ...");
     }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -29,8 +32,8 @@ public class LoadingDialog extends Window {
         setMinimumSize(getPreferredSize());
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                onWindowOpened(evt);
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
             }
         });
 
@@ -78,13 +81,13 @@ public class LoadingDialog extends Window {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void onWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_onWindowOpened
-        try {
-            getRawData();
-        } catch (Exception e) {
-            handleLoadingException();
-        }
-    }//GEN-LAST:event_onWindowOpened
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        DataDownloader downloader = new DataDownloader();
+        RateListing listing = downloader.getRateListing();
+        MainWindow window = new MainWindow(listing);
+        window.setVisible(true);
+        this.dispose(); 
+    }//GEN-LAST:event_formWindowActivated
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ActionDescriptionLabel;
@@ -92,13 +95,5 @@ public class LoadingDialog extends Window {
     private javax.swing.JLabel LoadingIconImage;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-
-    private void getRawData() {
-    }
-
-    private void handleLoadingException() {
-        JOptionPane.showMessageDialog(this, "A loading error has occured. "
-                    + "Application will be closed. Please try again later ...", "Loading error", JOptionPane.ERROR_MESSAGE);
-        System.exit(1);
-    }
+    
 }
