@@ -1,36 +1,92 @@
 package pl.baadamczyk.exchangerates.dataprocessing;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.io.InputStream;
+import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import pl.baadamczyk.exchangerates.dataprocessing.xmlentities.DataSource;
 import java.util.ArrayList;
+import java.util.Date;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.DOMException;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+import pl.baadamczyk.exchangerates.dataprocessing.xmlentities.ExchangeRate;
 
 /**
  *
  * @author baadamczyk
  */
-public class DataDownloader  { //extends XMLHandler {
+public class DataDownloader extends XMLHandler {
     
     private ArrayList<DataSource> SourcesList = new ArrayList<>();
-    private RateListing rateListing;
+    private RateListing rateListing = new RateListing();
 
     public DataDownloader() {
         SourcesManager sourcesManager = new SourcesManager();
         SourcesList = sourcesManager.getSourceList();
+        createRateListing();
     }
 
     public RateListing getRateListing() {
         return rateListing;
     }
     
-    private void checkSourcesAvailability() throws MalformedURLException, IOException {
-        
+    private void createRateListing() {
            
-            //in other case - check next source from list
-            //store index of first available source in a property (!)
-            // (should be moved to sources manager)
+           for(DataSource source : SourcesList) {                
+               if(!source.isIsAvailable()) break;
+               else {                           
+                   try {
+                       InputStream xml = getXMLStream(new URL(source.getAddress()));
+                       NodeList rateNodeList = createNodeList(xml, "Cube");
+                       setRateListingParameters(source, rateNodeList);
+                       aquireContent(rateNodeList);                       
+                   } catch (ParserConfigurationException | SAXException | IOException ex) {                  
+                   }
+               }
+           }            
+        }  
+
+    @Override
+    public void aquireContent(NodeList SourceNodeList) {
+        for(int i=2; i < SourceNodeList.getLength(); i++) {
+            Node ElementNode = SourceNodeList.item(i);
+            
+            if(ElementNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element RateElement = (Element) ElementNode;                               
+                
+                String currency = RateElement.getAttribute("currency");
+                String rate = RateElement.getAttribute("rate");
+                
+                rateListing.add(new ExchangeRate(rate, currency));                                
+            }
         }
-    
-    
-   
+    }
+
+    private void setRateListingParameters(DataSource source, NodeList nodeList) {
+                
+        Date ListingDate = getListingDate(nodeList);               
+        String SourceName = source.getName();
+        String SourceAddress = source.getAddress();
+        String BaseUnit = source.getBaseUnit();
+        
+        rateListing.setBaseCurrency(BaseUnit);
+        rateListing.setPublicationDate(ListingDate);
+        rateListing.setSourceAddress(SourceAddress);
+        rateListing.setSourceName(SourceName);               
+    }
+
+    private Date getListingDate(NodeList nodeList) {
+        try {
+            String ListingDateString = nodeList.item(1).getAttributes().item(0).getNodeValue();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            return dateFormat.parse(ListingDateString);
+        } catch (DOMException | ParseException ex) {
+            return null;
+        }
+    }
 }
