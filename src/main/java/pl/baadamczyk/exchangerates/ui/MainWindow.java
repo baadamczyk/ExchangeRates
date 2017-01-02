@@ -14,6 +14,7 @@ public class MainWindow extends Window {
     public MainWindow(RateListing listing) {
         super(600, 500, "ExchangeRates");
         initComponents();
+        
         rateListing = listing;
         inputDataFromListing(rateListing);
         appendCurrencySymbolToWindowTitle();
@@ -75,6 +76,11 @@ public class MainWindow extends Window {
         ApplicationSubmenu.setText("Application");
 
         RefreshMenuOption.setText("Refresh");
+        RefreshMenuOption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshMenuOptionActionPerformed(evt);
+            }
+        });
         ApplicationSubmenu.add(RefreshMenuOption);
 
         ExitMenuOption.setText("Exit");
@@ -85,7 +91,6 @@ public class MainWindow extends Window {
         ToolSubmenu.setText("Tools");
 
         ConverterMenuOption.setText("Rates converter");
-        ConverterMenuOption.setActionCommand("Rates converter");
         ToolSubmenu.add(ConverterMenuOption);
 
         PayPalPaymentsMenuOption.setText("PayPal payments calculator");
@@ -139,6 +144,10 @@ public class MainWindow extends Window {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void RefreshMenuOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshMenuOptionActionPerformed
+        refreshData();
+    }//GEN-LAST:event_RefreshMenuOptionActionPerformed
           
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -175,5 +184,11 @@ public class MainWindow extends Window {
         for(ExchangeRate rate : listing) {
             RateDisplayContainer.add(new EntryTile(rate.getName(), rate.getValue()));
         }
+    }
+
+    private void refreshData() {
+        LoadingDialog dialog = new LoadingDialog();
+        dialog.setVisible(true);
+        this.dispose();
     }
 }
