@@ -84,6 +84,11 @@ public class MainWindow extends Window {
         ApplicationSubmenu.add(RefreshMenuOption);
 
         ExitMenuOption.setText("Exit");
+        ExitMenuOption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitMenuOptionActionPerformed(evt);
+            }
+        });
         ApplicationSubmenu.add(ExitMenuOption);
 
         ApplicationMenu.add(ApplicationSubmenu);
@@ -148,6 +153,10 @@ public class MainWindow extends Window {
     private void RefreshMenuOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshMenuOptionActionPerformed
         refreshData();
     }//GEN-LAST:event_RefreshMenuOptionActionPerformed
+
+    private void ExitMenuOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitMenuOptionActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_ExitMenuOptionActionPerformed
           
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
