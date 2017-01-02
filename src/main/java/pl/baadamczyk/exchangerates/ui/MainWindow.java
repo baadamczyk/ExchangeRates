@@ -9,11 +9,13 @@ import pl.baadamczyk.exchangerates.dataprocessing.xmlentities.ExchangeRate;
 public class MainWindow extends Window {
     
     private String ActiveCurrencySymbol = "CURR_SYMB";
+    private RateListing rateListing;
  
     public MainWindow(RateListing listing) {
         super(600, 500, "ExchangeRates");
         initComponents();
-        inputDataFromListing(listing);
+        rateListing = listing;
+        inputDataFromListing(rateListing);
         appendCurrencySymbolToWindowTitle();
         setContainerLayout();        
     }
