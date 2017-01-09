@@ -138,7 +138,6 @@ public class CurrencySelectionDialog extends Window {
                newRate.setName(rate.getName());               
            }
            
-           newRateValue = Math.round(newRateValue * 10000.0) / 10000.0;
            newRate.setValue(newRateValue);
            newListing.add(newRate);                      
        }

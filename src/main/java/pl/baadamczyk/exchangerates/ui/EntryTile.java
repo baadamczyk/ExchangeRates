@@ -26,6 +26,7 @@ public class EntryTile extends JPanel {
         this.CurrencyName = CurrencyName;
         this.RateValue = RateValue; 
         this.TextColor = Color.BLACK;
+        roundRateValue();
         setTileLayout();
         addComponents(); 
     }
@@ -56,4 +57,10 @@ public class EntryTile extends JPanel {
             }                        
         });    
     }      
+
+    private void roundRateValue() {
+        double valueToRound = Double.parseDouble(RateValue);
+        double roundedValue = Math.round(valueToRound * 10000.0) / 10000.0;
+        RateValue = String.valueOf(roundedValue);
+    }
 }
