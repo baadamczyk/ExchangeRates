@@ -8,11 +8,22 @@ import pl.baadamczyk.exchangerates.dataprocessing.RateListing;
  * @author baadamczyk
  */
 public class LoadingDialog extends Window {
+    
+    private RateListing rateListing;
 
     public LoadingDialog() {
         super(500, 150, "Loading data ...");         
         initComponents();                 
         ActionDescriptionLabel.setText("Exchange rates data are being loaded ...");
+        DataDownloader downloader = new DataDownloader();
+        rateListing = downloader.getRateListing();
+    }
+    
+    public LoadingDialog(RateListing listing) {
+        super(500, 150, "Loading data ...");         
+        initComponents();                 
+        ActionDescriptionLabel.setText("Exchange rates data are being loaded ...");  
+        this.rateListing = listing;
     }
     
     
@@ -82,9 +93,8 @@ public class LoadingDialog extends Window {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        DataDownloader downloader = new DataDownloader();
-        RateListing listing = downloader.getRateListing();
-        MainWindow window = new MainWindow(listing);
+        
+        MainWindow window = new MainWindow(rateListing);
         window.setVisible(true);
         this.dispose(); 
     }//GEN-LAST:event_formWindowActivated

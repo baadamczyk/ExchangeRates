@@ -73,10 +73,14 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Change base currency"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ChangeBaseCurrMenuOptionActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="DataSourceSelectionMenuOption">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Change data source"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </MenuItem>
           </SubComponents>

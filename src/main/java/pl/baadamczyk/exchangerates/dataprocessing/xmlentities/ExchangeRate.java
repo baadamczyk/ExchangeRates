@@ -7,14 +7,19 @@ package pl.baadamczyk.exchangerates.dataprocessing.xmlentities;
 public class ExchangeRate {
     
     private String Name;
-    private String Value;
+    private double Value;
 
     public ExchangeRate() {
     }
 
-    public ExchangeRate(String Name, String Value) {
+    public ExchangeRate(String Name, double Value) {
         this.Name = Name;
         this.Value = Value;
+    }
+    
+    public ExchangeRate(String Name, String Value) {
+        this.Name = Name;
+        this.Value = Double.parseDouble(Value);
     }
 
     public String getName() {
@@ -25,11 +30,11 @@ public class ExchangeRate {
         this.Name = Name;
     }
 
-    public String getValue() {
+    public double getValue() {
         return Value;
     }
 
-    public void setValue(String Value) {
+    public void setValue(double Value) {
         this.Value = Value;
     }    
 }

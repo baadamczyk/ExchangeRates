@@ -3,10 +3,12 @@
 package pl.baadamczyk.exchangerates.ui;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import pl.baadamczyk.exchangerates.dataprocessing.RateListing;
 import pl.baadamczyk.exchangerates.dataprocessing.xmlentities.ExchangeRate;
 
-public class MainWindow extends Window {
+public class MainWindow extends Window implements ActionListener {
     
     private String ActiveCurrencySymbol = "CURR_SYMB";
     private RateListing rateListing;
@@ -106,9 +108,15 @@ public class MainWindow extends Window {
         PreferencesSubmenu.setText("Preferences");
 
         ChangeBaseCurrMenuOption.setText("Change base currency");
+        ChangeBaseCurrMenuOption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangeBaseCurrMenuOptionActionPerformed(evt);
+            }
+        });
         PreferencesSubmenu.add(ChangeBaseCurrMenuOption);
 
         DataSourceSelectionMenuOption.setText("Change data source");
+        DataSourceSelectionMenuOption.setEnabled(false);
         PreferencesSubmenu.add(DataSourceSelectionMenuOption);
 
         ApplicationMenu.add(PreferencesSubmenu);
@@ -151,12 +159,16 @@ public class MainWindow extends Window {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RefreshMenuOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshMenuOptionActionPerformed
-        refreshData();
+        refreshData(null);
     }//GEN-LAST:event_RefreshMenuOptionActionPerformed
 
     private void ExitMenuOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitMenuOptionActionPerformed
         System.exit(0);
     }//GEN-LAST:event_ExitMenuOptionActionPerformed
+
+    private void ChangeBaseCurrMenuOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeBaseCurrMenuOptionActionPerformed
+        changeBaseCurrency();
+    }//GEN-LAST:event_ChangeBaseCurrMenuOptionActionPerformed
           
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -191,13 +203,17 @@ public class MainWindow extends Window {
         ActiveCurrencySymbol = listing.getBaseCurrency();
         
         for(ExchangeRate rate : listing) {
-            RateDisplayContainer.add(new EntryTile(rate.getName(), rate.getValue()));
+            RateDisplayContainer.add(new EntryTile(rate.getName(), String.valueOf(rate.getValue())));
         }
     }
 
-    private void refreshData() {
-        LoadingDialog dialog = new LoadingDialog();
-        dialog.setVisible(true);
+    private void changeBaseCurrency() {        
+        CurrencySelectionDialog selectionDialog = new CurrencySelectionDialog(rateListing, this);
+        selectionDialog.setVisible(true);        
+    }     
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
         this.dispose();
     }
 }

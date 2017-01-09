@@ -19,6 +19,10 @@ public class RateListing extends ArrayList<ExchangeRate> implements Serializable
 
     public RateListing() {
     }
+    
+    public RateListing(String BaseCurrency) {
+        this.BaseCurrency = BaseCurrency;
+    }
 
     public RateListing(String SourceName, String SourceAddress, Date PublicationDate, String BaseCurrency) {
         this.SourceName = SourceName;

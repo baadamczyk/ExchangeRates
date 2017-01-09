@@ -62,7 +62,7 @@ public class DataDownloader extends XMLHandler {
                 String currency = RateElement.getAttribute("currency");
                 String rate = RateElement.getAttribute("rate");
                 
-                rateListing.add(new ExchangeRate(rate, currency));                                
+                rateListing.add(new ExchangeRate(currency, rate));                                
             }
         }
     }
