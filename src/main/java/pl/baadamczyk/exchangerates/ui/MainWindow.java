@@ -98,9 +98,15 @@ public class MainWindow extends Window implements ActionListener {
         ToolSubmenu.setText("Tools");
 
         ConverterMenuOption.setText("Rates converter");
+        ConverterMenuOption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConverterMenuOptionActionPerformed(evt);
+            }
+        });
         ToolSubmenu.add(ConverterMenuOption);
 
         PayPalPaymentsMenuOption.setText("PayPal payments calculator");
+        PayPalPaymentsMenuOption.setEnabled(false);
         ToolSubmenu.add(PayPalPaymentsMenuOption);
 
         ApplicationMenu.add(ToolSubmenu);
@@ -169,6 +175,11 @@ public class MainWindow extends Window implements ActionListener {
     private void ChangeBaseCurrMenuOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeBaseCurrMenuOptionActionPerformed
         changeBaseCurrency();
     }//GEN-LAST:event_ChangeBaseCurrMenuOptionActionPerformed
+
+    private void ConverterMenuOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConverterMenuOptionActionPerformed
+        CurrencyConverter converter = new CurrencyConverter(rateListing);
+        converter.setVisible(true);
+    }//GEN-LAST:event_ConverterMenuOptionActionPerformed
           
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

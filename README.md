@@ -5,5 +5,5 @@ Currency conversion tool with PayPal support
 - [x] Aquiring rates from whe web
 - [x] Base unit selection
 - [x] Exchange rates display
-- [ ] Currency conversion functionality
+- [x] Currency conversion functionality
 - [ ] PayPal payment conversion support
