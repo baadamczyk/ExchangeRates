@@ -34,7 +34,6 @@ public class LoadingDialog extends Window {
 
         jPanel1 = new javax.swing.JPanel();
         ActionDescriptionLabel = new javax.swing.JLabel();
-        CancelButton = new javax.swing.JButton();
         LoadingIconImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -55,14 +54,6 @@ public class LoadingDialog extends Window {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(9, 0, 0, 0);
         jPanel1.add(ActionDescriptionLabel, gridBagConstraints);
-
-        CancelButton.setText("Cancel");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.insets = new java.awt.Insets(14, 0, 12, 0);
-        jPanel1.add(CancelButton, gridBagConstraints);
 
         LoadingIconImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphics/loadingicon.gif"))); // NOI18N
         LoadingIconImage.setToolTipText("");
@@ -101,7 +92,6 @@ public class LoadingDialog extends Window {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ActionDescriptionLabel;
-    private javax.swing.JButton CancelButton;
     private javax.swing.JLabel LoadingIconImage;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

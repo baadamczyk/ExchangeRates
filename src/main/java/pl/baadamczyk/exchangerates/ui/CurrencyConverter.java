@@ -6,6 +6,7 @@ import java.util.Comparator;
 import javax.swing.DefaultComboBoxModel;
 import pl.baadamczyk.exchangerates.dataprocessing.RateListing;
 import pl.baadamczyk.exchangerates.dataprocessing.xmlentities.ExchangeRate;
+import pl.baadamczyk.exchangerates.serialization.ObjectSerializer;
 
 /**
  *
@@ -15,10 +16,10 @@ public class CurrencyConverter extends Window {
 
     RateListing listing;
     
-    public CurrencyConverter(RateListing listing) {
+    public CurrencyConverter() {
         super(400, 185, "Currency converter");
         initComponents();
-        this.listing = listing;                                
+        getInitialListing();                               
         setComboboxModels();
     }
     
@@ -196,6 +197,10 @@ public class CurrencyConverter extends Window {
     private javax.swing.JTextField TargetValueTexfield;
     // End of variables declaration//GEN-END:variables
 
+    private void getInitialListing() {
+        listing = (RateListing) ObjectSerializer.deserializeObject("initialRateListing.erf");        
+    }
+    
     private void resetFields() {
         SourceValueTexfield.setText("");
         SourceCurrencyCombobox.setSelectedIndex(0);
@@ -240,7 +245,7 @@ public class CurrencyConverter extends Window {
         double TargetValue = 0;
         
         TargetValue = (TargetRateInEur * SourceValue) / SourceRateInEur;
-        TargetValue = Math.round(TargetValue * 100.0) / 100.0;
+        TargetValue = Math.round(TargetValue * 100.00) / 100.00;
         TargetValueTexfield.setText(String.valueOf(TargetValue));
     }
 
@@ -277,5 +282,5 @@ public class CurrencyConverter extends Window {
         } catch(NumberFormatException | NullPointerException ex) {
             return 0;
         }
-    }    
+    }        
 }

@@ -5,6 +5,8 @@ package pl.baadamczyk.exchangerates.ui;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.InputStream;
+import java.util.zip.InflaterInputStream;
 import pl.baadamczyk.exchangerates.dataprocessing.RateListing;
 import pl.baadamczyk.exchangerates.dataprocessing.xmlentities.ExchangeRate;
 
@@ -12,6 +14,7 @@ public class MainWindow extends Window implements ActionListener {
     
     private String ActiveCurrencySymbol = "CURR_SYMB";
     private RateListing rateListing;
+    private RateListing eurRateListing;
  
     public MainWindow(RateListing listing) {
         super(600, 500, "ExchangeRates");
@@ -38,7 +41,6 @@ public class MainWindow extends Window implements ActionListener {
         PreferencesSubmenu = new javax.swing.JMenu();
         ChangeBaseCurrMenuOption = new javax.swing.JMenuItem();
         HelpSubmenu = new javax.swing.JMenu();
-        IntroductionMenuOption = new javax.swing.JMenuItem();
         AboutMenuOption = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -124,11 +126,12 @@ public class MainWindow extends Window implements ActionListener {
         HelpSubmenu.setText("Help");
         HelpSubmenu.setActionCommand("");
 
-        IntroductionMenuOption.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
-        IntroductionMenuOption.setText("Introduction");
-        HelpSubmenu.add(IntroductionMenuOption);
-
         AboutMenuOption.setText("About");
+        AboutMenuOption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AboutMenuOptionActionPerformed(evt);
+            }
+        });
         HelpSubmenu.add(AboutMenuOption);
 
         ApplicationMenu.add(HelpSubmenu);
@@ -172,9 +175,14 @@ public class MainWindow extends Window implements ActionListener {
     }//GEN-LAST:event_ChangeBaseCurrMenuOptionActionPerformed
 
     private void ConverterMenuOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConverterMenuOptionActionPerformed
-        CurrencyConverter converter = new CurrencyConverter(rateListing);
+        CurrencyConverter converter = new CurrencyConverter();
         converter.setVisible(true);
     }//GEN-LAST:event_ConverterMenuOptionActionPerformed
+
+    private void AboutMenuOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AboutMenuOptionActionPerformed
+        AboutWindow aboutWindow = new AboutWindow();
+        aboutWindow.setVisible(true);
+    }//GEN-LAST:event_AboutMenuOptionActionPerformed
           
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -185,7 +193,6 @@ public class MainWindow extends Window implements ActionListener {
     private javax.swing.JMenuItem ConverterMenuOption;
     private javax.swing.JMenuItem ExitMenuOption;
     private javax.swing.JMenu HelpSubmenu;
-    private javax.swing.JMenuItem IntroductionMenuOption;
     private javax.swing.JMenu PreferencesSubmenu;
     private javax.swing.JPanel RateDisplayContainer;
     private javax.swing.JMenuItem RefreshMenuOption;
@@ -219,5 +226,5 @@ public class MainWindow extends Window implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         this.dispose();
-    }
+    }    
 }

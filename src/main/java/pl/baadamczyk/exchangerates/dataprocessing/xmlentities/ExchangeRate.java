@@ -1,10 +1,14 @@
 package pl.baadamczyk.exchangerates.dataprocessing.xmlentities;
 
+import java.io.Serializable;
+
 /**
  *
  * @author baadamczyk
  */
-public class ExchangeRate {
+public class ExchangeRate implements Serializable {
+
+    private static final long serialVersionUID = -3331391547734888233L;
     
     private String Name;
     private double Value;

@@ -1,5 +1,5 @@
 # ExchangeRates
-Currency conversion tool with PayPal support
+Currency conversion tool
 
 # TODO 
 - [x] Aquiring rates from whe web

@@ -1,7 +1,12 @@
 package pl.baadamczyk.exchangerates.dataprocessing;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,6 +20,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import pl.baadamczyk.exchangerates.dataprocessing.xmlentities.ExchangeRate;
+import pl.baadamczyk.exchangerates.serialization.ObjectSerializer;
 
 /**
  *
@@ -29,6 +35,7 @@ public class DataDownloader extends XMLHandler {
         SourcesManager sourcesManager = new SourcesManager();
         SourcesList = sourcesManager.getSourceList();
         createRateListing();
+        serializeInitialRateListing();
     }
 
     public RateListing getRateListing() {
@@ -88,5 +95,9 @@ public class DataDownloader extends XMLHandler {
         } catch (DOMException | ParseException ex) {
             return null;
         }
+    }
+
+    private void serializeInitialRateListing() {
+        ObjectSerializer.serializeObject(rateListing, "initialRateListing");
     }
 }
