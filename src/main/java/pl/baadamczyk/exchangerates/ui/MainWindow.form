@@ -31,6 +31,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="RefreshMenuOption">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F5"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Refresh"/>
               </Properties>
               <Events>
@@ -39,6 +42,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="ExitMenuOption">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Alt+F4"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>
@@ -54,17 +60,14 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="ConverterMenuOption">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F8"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Rates converter"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConverterMenuOptionActionPerformed"/>
               </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="PayPalPaymentsMenuOption">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="PayPal payments calculator"/>
-                <Property name="enabled" type="boolean" value="false"/>
-              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -75,17 +78,14 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="ChangeBaseCurrMenuOption">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Shift+Ctrl+O"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Change base currency"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ChangeBaseCurrMenuOptionActionPerformed"/>
               </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="DataSourceSelectionMenuOption">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Change data source"/>
-                <Property name="enabled" type="boolean" value="false"/>
-              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -97,6 +97,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="IntroductionMenuOption">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Introduction"/>
               </Properties>
             </MenuItem>
@@ -146,11 +149,11 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="579" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="581" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="567" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="569" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>

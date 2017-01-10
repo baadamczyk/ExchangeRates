@@ -35,10 +35,8 @@ public class MainWindow extends Window implements ActionListener {
         ExitMenuOption = new javax.swing.JMenuItem();
         ToolSubmenu = new javax.swing.JMenu();
         ConverterMenuOption = new javax.swing.JMenuItem();
-        PayPalPaymentsMenuOption = new javax.swing.JMenuItem();
         PreferencesSubmenu = new javax.swing.JMenu();
         ChangeBaseCurrMenuOption = new javax.swing.JMenuItem();
-        DataSourceSelectionMenuOption = new javax.swing.JMenuItem();
         HelpSubmenu = new javax.swing.JMenu();
         IntroductionMenuOption = new javax.swing.JMenuItem();
         AboutMenuOption = new javax.swing.JMenuItem();
@@ -77,6 +75,7 @@ public class MainWindow extends Window implements ActionListener {
 
         ApplicationSubmenu.setText("Application");
 
+        RefreshMenuOption.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
         RefreshMenuOption.setText("Refresh");
         RefreshMenuOption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +84,7 @@ public class MainWindow extends Window implements ActionListener {
         });
         ApplicationSubmenu.add(RefreshMenuOption);
 
+        ExitMenuOption.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         ExitMenuOption.setText("Exit");
         ExitMenuOption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,6 +97,7 @@ public class MainWindow extends Window implements ActionListener {
 
         ToolSubmenu.setText("Tools");
 
+        ConverterMenuOption.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F8, 0));
         ConverterMenuOption.setText("Rates converter");
         ConverterMenuOption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,14 +106,11 @@ public class MainWindow extends Window implements ActionListener {
         });
         ToolSubmenu.add(ConverterMenuOption);
 
-        PayPalPaymentsMenuOption.setText("PayPal payments calculator");
-        PayPalPaymentsMenuOption.setEnabled(false);
-        ToolSubmenu.add(PayPalPaymentsMenuOption);
-
         ApplicationMenu.add(ToolSubmenu);
 
         PreferencesSubmenu.setText("Preferences");
 
+        ChangeBaseCurrMenuOption.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         ChangeBaseCurrMenuOption.setText("Change base currency");
         ChangeBaseCurrMenuOption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,15 +119,12 @@ public class MainWindow extends Window implements ActionListener {
         });
         PreferencesSubmenu.add(ChangeBaseCurrMenuOption);
 
-        DataSourceSelectionMenuOption.setText("Change data source");
-        DataSourceSelectionMenuOption.setEnabled(false);
-        PreferencesSubmenu.add(DataSourceSelectionMenuOption);
-
         ApplicationMenu.add(PreferencesSubmenu);
 
         HelpSubmenu.setText("Help");
         HelpSubmenu.setActionCommand("");
 
+        IntroductionMenuOption.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         IntroductionMenuOption.setText("Introduction");
         HelpSubmenu.add(IntroductionMenuOption);
 
@@ -153,11 +148,11 @@ public class MainWindow extends Window implements ActionListener {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 579, Short.MAX_VALUE)
+            .addGap(0, 581, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -188,11 +183,9 @@ public class MainWindow extends Window implements ActionListener {
     private javax.swing.JMenu ApplicationSubmenu;
     private javax.swing.JMenuItem ChangeBaseCurrMenuOption;
     private javax.swing.JMenuItem ConverterMenuOption;
-    private javax.swing.JMenuItem DataSourceSelectionMenuOption;
     private javax.swing.JMenuItem ExitMenuOption;
     private javax.swing.JMenu HelpSubmenu;
     private javax.swing.JMenuItem IntroductionMenuOption;
-    private javax.swing.JMenuItem PayPalPaymentsMenuOption;
     private javax.swing.JMenu PreferencesSubmenu;
     private javax.swing.JPanel RateDisplayContainer;
     private javax.swing.JMenuItem RefreshMenuOption;
